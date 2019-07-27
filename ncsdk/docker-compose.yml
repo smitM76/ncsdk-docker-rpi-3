@@ -1,0 +1,18 @@
+version: '3' # docker-compose version 3
+services: # initializing services
+  lpr: # name of the sevice
+    image: ncsdk:0.1 # image to use
+    ports: # port mapping
+     - "5000:5000"
+    privileged: true
+    depends_on: # setting dependencies to redis server
+     - redis
+    command: sleep 1h
+    command: ./run.sh # setting ./run.sh to exeute while docker-compose up
+    tty: true # to avoid exit of lpr service container with status code 0
+    stdin_open: true # to avoid exit of lpr service container with status code 0
+    devices: # adding camera device to use by container while running
+      - "/dev/video0:/dev/video0" # mapping camera device
+      - "/dev/dri/card0:/dev/dri/card0" # mapping camera device
+  redis: # name of service
+    image: "redis:alpine" # image to use
