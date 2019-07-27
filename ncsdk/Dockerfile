@@ -186,20 +186,4 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
 # setting working directory to /app
 WORKDIR /app
 
-# copying directory lpr to /app of docker container
-COPY license-reader /app
-
-# copying runtime_data to /usr/share/openalpr/runtime_data of docker container
-COPY runtime_data /usr/share/openalpr/runtime_data
-
-# installing python dependencies for lpr project
-RUN pip3 install -r requirements.txt
-
-# changing working directory to /app
-WORKDIR /app
-
-# making run.sh executable
-RUN chmod a+x run.sh 
-
-# setting run.sh as entrypoint
-CMD ["./run.sh"]
+# your project here!
